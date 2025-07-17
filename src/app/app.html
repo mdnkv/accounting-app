@@ -1,1 +1,17 @@
-<router-outlet />
+<mat-toolbar class="app-level-container">
+  <div class="app-level-block">
+    <button (click)="toggleCollapsed()" type="button" matIconButton>
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <div class="app-level-block"></div>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav opened mode="side" [style.width]="sidenavWidth()">
+    <app-sidenav-menu [collapsed]="sidenavCollapsed()"/>
+  </mat-sidenav>
+  <mat-sidenav-content [style.margin-left]="sidenavWidth()" class="app-main-content">
+    <router-outlet />
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,15 @@
+<div class="app-sidenav-menu-container">
+  <!-- top menu -->
+  <div class="app-sidebar-menu-block">
+    <mat-nav-list>
+      @for (item of menuItems(); track $index){
+        <a mat-list-item>
+          <mat-icon matListItemIcon>{{item.icon}}</mat-icon>
+          @if (!collapsed()){
+            <span matListItemTitle>{{ item.title }}</span>
+          }
+        </a>
+      }
+    </mat-nav-list>
+  </div>
+</div>
