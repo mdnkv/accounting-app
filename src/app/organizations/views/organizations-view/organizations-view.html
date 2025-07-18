@@ -1,0 +1,19 @@
+<div class="app-block">
+  <h2>Organizations</h2>
+</div>
+
+<div class="app-block">
+  @for (organization of organizations; track $index){
+    <app-organization-card
+      (update)="onUpdateOrganization($event)"
+      (setActive)="onSetActiveOrganization($event)"
+      [organization]="organization"
+    />
+  }
+</div>
+
+<div class="app-fab">
+  <a matFab [routerLink]="['/organizations/create']">
+    <mat-icon>add</mat-icon>
+  </a>
+</div>

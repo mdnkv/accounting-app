@@ -1,0 +1,12 @@
+<div class="app-block">
+  <app-form-page-header (goBack)="goBack()">
+    <h3>Update organization</h3>
+  </app-form-page-header>
+</div>
+
+<div class="app-block">
+  <app-organization-form
+    [currentOrganization]="organization"
+    (submitForm)="onUpdateOrganization($event)"
+  />
+</div>

@@ -1,0 +1,18 @@
+<mat-card class="app-block" appearance="filled">
+  <mat-card-content>
+    <div class="app-level-container">
+      <div class="app-level-item">
+        <p>{{organization().organization.name}}</p>
+      </div>
+      <div class="app-level-item">
+        @if (organization().active){
+          <button type="button" (click)="onUpdate()" matIconButton>
+            <mat-icon>edit_square</mat-icon>
+          </button>
+        } @else {
+          <button type="button" (click)="onSetActive()" matButton>Set active</button>
+        }
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

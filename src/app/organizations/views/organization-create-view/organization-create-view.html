@@ -1,0 +1,9 @@
+<div class="app-block">
+  <app-form-page-header (goBack)="goBack()">
+    <h2>Create organization</h2>
+  </app-form-page-header>
+</div>
+
+<div class="app-block">
+  <app-organization-form (submitForm)="onCreateOrganization($event)"/>
+</div>

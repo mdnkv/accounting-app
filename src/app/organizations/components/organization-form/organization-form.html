@@ -1,0 +1,15 @@
+<form [formGroup]="form" (submit)="onSubmit()">
+
+  <!-- Organization name -->
+  <mat-form-field>
+    <mat-label>Organization name</mat-label>
+    <input matInput formControlName="name">
+    @if (form.get('name')?.touched && form.get('name')?.invalid ){
+      <mat-error>This field cannot be blank</mat-error>
+    }
+  </mat-form-field>
+
+  <div class="app-block">
+    <button type="submit" matButton="filled" [disabled]="form.invalid">Save</button>
+  </div>
+</form>

@@ -1,3 +1,39 @@
-
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+mat-form-field {
+  width: 100%;
+}
+
+.app-level-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app-page-header-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+}
+
+.app-level-item {
+
+}
+
+.app-main-content {
+  padding: 10px;
+}
+
+.app-block {
+  margin-top: 15px !important;
+  margin-bottom: 15px !important;
+}
+
+.app-fab {
+  position: absolute;
+  bottom: 60px;
+  right: 40px;
+}
