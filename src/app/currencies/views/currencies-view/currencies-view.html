@@ -1,0 +1,13 @@
+<div class="app-block">
+  <h2>Currencies</h2>
+</div>
+
+<div class="app-block">
+  <app-currencies-list
+    (updateCurrency)="onUpdateCurrency($event)"
+    (deleteCurrency)="onDeleteCurrency($event)"
+    [currencies]="currencies"
+  />
+</div>
+
+<app-create-fab (fabClicked)="openCreateCurrencyForm()"/>

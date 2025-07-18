@@ -1,19 +1,20 @@
 import {Component, inject} from '@angular/core';
-import {Router, RouterLink} from '@angular/router';
+import {Router} from '@angular/router';
 
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 
 import {OrganizationUser} from '../../models/organizations.models';
 import {OrganizationCard} from '../../components/organization-card/organization-card';
+import {CreateFab} from '../../../core/components/create-fab/create-fab';
 
 @Component({
   selector: 'app-organizations-view',
   imports: [
     MatIconModule,
     MatButtonModule,
-    RouterLink,
-    OrganizationCard
+    OrganizationCard,
+    CreateFab
   ],
   templateUrl: './organizations-view.html',
   styleUrl: './organizations-view.css'
@@ -35,6 +36,10 @@ export class OrganizationsView {
 
   onSetActiveOrganization(payload: OrganizationUser){
     console.log(payload)
+  }
+
+  openCreateOrganizationView(){
+    this.router.navigateByUrl('/organizations/create')
   }
 
 }

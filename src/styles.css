@@ -28,12 +28,8 @@ mat-form-field {
 }
 
 .app-block {
-  margin-top: 15px !important;
-  margin-bottom: 15px !important;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
 }
 
-.app-fab {
-  position: absolute;
-  bottom: 60px;
-  right: 40px;
-}
+.app-button-row {}

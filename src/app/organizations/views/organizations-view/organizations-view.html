@@ -12,8 +12,4 @@
   }
 </div>
 
-<div class="app-fab">
-  <a matFab [routerLink]="['/organizations/create']">
-    <mat-icon>add</mat-icon>
-  </a>
-</div>
+<app-create-fab (fabClicked)="openCreateOrganizationView()"/>

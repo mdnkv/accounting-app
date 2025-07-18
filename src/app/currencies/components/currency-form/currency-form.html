@@ -1,0 +1,28 @@
+<form [formGroup]="form" (submit)="onSubmit()">
+  <!-- Name -->
+  <mat-form-field>
+    <mat-label>Currency name</mat-label>
+    <input matInput formControlName="name">
+    @if (form.get('name')?.touched && form.get('name')?.invalid ){
+      <mat-error>This field cannot be empty</mat-error>
+    }
+  </mat-form-field>
+  <!-- Code -->
+  <mat-form-field>
+    <mat-label>Currency code</mat-label>
+    <input matInput formControlName="code">
+    @if (form.get('name')?.touched && form.get('code')?.invalid ){
+      <mat-error>This field cannot be empty</mat-error>
+    }
+  </mat-form-field>
+  <!-- Primary -->
+  @if (updateMode()){
+    <div class="app-block">
+      <mat-checkbox formControlName="primary">This is primary currency</mat-checkbox>
+    </div>
+  }
+  <!-- Buttons-->
+  <div class="app-button-row">
+    <button type="submit" [disabled]="form.invalid" matButton="filled">Save</button>
+  </div>
+</form>

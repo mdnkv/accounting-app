@@ -1,0 +1,8 @@
+<app-form-page-header (goBack)="goBack()">
+  <h2>Update currency</h2>
+</app-form-page-header>
+
+<app-currency-form
+  [currentCurrency]="currency"
+  (submitForm)="onUpdateCurrency($event)"
+/>
