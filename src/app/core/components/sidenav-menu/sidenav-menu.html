@@ -3,7 +3,7 @@
   <div class="app-sidebar-menu-item">
     <mat-nav-list>
       @for (item of menuItems(); track $index){
-        <a mat-list-item>
+        <a mat-list-item [routerLink]="item.route">
           <mat-icon matListItemIcon>{{item.icon}}</mat-icon>
           @if (!collapsed()){
             <span matListItemTitle>{{ item.title }}</span>

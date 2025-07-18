@@ -1,0 +1,7 @@
+<app-form-page-header (goBack)="goBack()">
+  <h2>Update account</h2>
+</app-form-page-header>
+<app-account-form
+  [currentAccount]="account"
+  (submitForm)="onUpdateAccount($event)"
+/>

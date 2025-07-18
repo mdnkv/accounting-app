@@ -1,0 +1,43 @@
+@if (accounts().length > 0){
+  <table mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="code">
+      <th mat-header-cell *matHeaderCellDef>Code</th>
+      <td mat-cell *matCellDef="let account">{{account.code}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let account">{{account.name}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef>Type</th>
+      <td mat-cell *matCellDef="let account">
+        @switch (account.type){
+          @case('ASSET'){Asset}
+          @case('LIABILITY'){Liability}
+          @case('EQUITY'){Equity}
+          @case('INCOME'){Income}
+          @default {Expense}
+        }
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let account">
+        <button type="button" matIconButton (click)="onUpdateAccount(account)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button type="button" matIconButton (click)="onDeleteAccount(account)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+  </table>
+}

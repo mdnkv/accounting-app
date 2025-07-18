@@ -6,6 +6,9 @@ import {OrganizationsView} from './organizations/views/organizations-view/organi
 import {CurrenciesView} from './currencies/views/currencies-view/currencies-view';
 import {CurrencyUpdateView} from './currencies/views/currency-update-view/currency-update-view';
 import {CurrencyCreateView} from './currencies/views/currency-create-view/currency-create-view';
+import {AccountCreateView} from './accounts/views/account-create-view/account-create-view';
+import {AccountUpdateView} from './accounts/views/account-update-view/account-update-view';
+import {AccountsView} from './accounts/views/accounts-view/accounts-view';
 
 export const routes: Routes = [
   {
@@ -31,5 +34,17 @@ export const routes: Routes = [
   {
     path: 'currencies',
     component: CurrenciesView
+  },
+  {
+    path:'accounts/create',
+    component: AccountCreateView
+  },
+  {
+    path: 'accounts/update/:accountId',
+    component: AccountUpdateView
+  },
+  {
+    path:'accounts',
+    component: AccountsView
   }
 ];

@@ -4,73 +4,80 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
-import {Currency} from '../../models/currencies.models';
+import {Account} from '../../models/accounts.models';
 
 @Component({
-  selector: 'app-currency-form',
+  selector: 'app-account-form',
   imports: [
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatSelectModule,
     MatCheckboxModule
   ],
-  templateUrl: './currency-form.html',
-  styleUrl: './currency-form.css'
+  templateUrl: './account-form.html',
+  styleUrl: './account-form.css'
 })
-export class CurrencyForm {
+export class AccountForm {
 
   formBuilder: FormBuilder = inject(FormBuilder)
   form: FormGroup = this.formBuilder.group({
     name: ['', [Validators.required, Validators.maxLength(255)]],
-    code: ['', [Validators.required, Validators.maxLength(3)]],
-    primary: [false]
+    code: ['', [Validators.required, Validators.maxLength(25)]],
+    type: ['ASSET', [Validators.required]],
+    deprecated: [false]
   })
 
   updateMode= signal(false)
-  submitForm = output<Currency>()
-  currentCurrency = input<Currency>()
+  submitForm = output<Account>()
+  currentAccount = input<Account>()
 
   constructor() {
     effect(() => {
-      if (this.currentCurrency() != undefined){
+      if (this.currentAccount() != undefined){
         this.updateMode.set(true)
-        this.updateForm(this.currentCurrency()!)
+        this.updateForm(this.currentAccount()!)
       } else {
         this.updateMode.set(false)
       }
-    });
+    })
   }
 
-  updateForm(payload: Currency){
+  updateForm(payload: Account){
     this.form.get('name')?.setValue(payload.name)
     this.form.get('code')?.setValue(payload.code)
-    this.form.get('primary')?.setValue(payload.primary)
+    this.form.get('type')?.setValue(payload.type)
+    this.form.get('deprecated')?.setValue(payload.deprecated)
   }
 
   onSubmit(){
     if (this.updateMode()){
-      // Update currency
-      const payload: Currency = {
-        ...this.currentCurrency()!,
+      // update
+      const payload: Account = {
+        ...this.currentAccount()!,
         name: this.form.get('name')?.value,
         code: this.form.get('code')?.value,
-        primary: this.form.get('primary')?.value
+        deprecated: this.form.get('deprecated')?.value,
+        type: this.form.get('type')?.value
       }
 
       this.submitForm.emit(payload)
 
     } else {
-      // Create new currency
-      const payload: Currency = {
+
+      const payload: Account = {
         name: this.form.get('name')?.value,
         code: this.form.get('code')?.value,
-        primary: false
+        type: this.form.get('type')?.value,
+        deprecated: false
       }
 
       this.submitForm.emit(payload)
+
     }
   }
 

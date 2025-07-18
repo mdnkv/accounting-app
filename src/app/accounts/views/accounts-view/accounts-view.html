@@ -1,0 +1,11 @@
+<div class="app-block">
+  <h2>Chart of accounts</h2>
+</div>
+<div class="app-block">
+  <app-accounts-list
+    [accounts]="accounts"
+    (deleteAccount)="onDeleteAccount($event)"
+    (updateAccount)="onUpdateAccount($event)"
+  />
+</div>
+<app-create-fab (fabClicked)="openCreateAccountForm()"/>
