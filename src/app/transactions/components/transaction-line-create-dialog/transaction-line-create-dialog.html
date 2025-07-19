@@ -1,0 +1,40 @@
+<form [formGroup]="form" (submit)="onSubmit()" class="app-transaction-line-create-dialog-form">
+
+  <h3>Add new transaction line</h3>
+
+  <!-- Account -->
+  <mat-form-field>
+    <mat-label>Account</mat-label>
+    <mat-select formControlName="accountId">
+      @for (account of accounts; track account.id!){
+        <mat-option [value]="account.id!">{{account.code}} - {{account.name}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Credit amount -->
+  <mat-form-field>
+    <mat-label>Credit amount</mat-label>
+    <input type="number" matInput formControlName="creditAmount">
+    @if ( form.get('creditAmount')?.touched && form.get('creditAmount')?.invalid ){
+      <mat-error>Invalid amount!</mat-error>
+    }
+  </mat-form-field>
+
+  <!-- Debit amount -->
+  <mat-form-field>
+    <mat-label>Debit amount</mat-label>
+    <input type="number" matInput formControlName="debitAmount">
+    @if ( form.get('debitAmount')?.touched && form.get('debitAmount')?.invalid ){
+      <mat-error>Invalid amount!</mat-error>
+    }
+  </mat-form-field>
+
+  <div class="app-button-row">
+    <button type="submit" matButton="filled" [disabled]="form.invalid">
+      Add
+    </button>
+
+    <button type="button" matButton="outlined" (click)="close()">Cancel</button>
+  </div>
+</form>

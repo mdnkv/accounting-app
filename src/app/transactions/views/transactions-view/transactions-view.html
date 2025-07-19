@@ -1,0 +1,11 @@
+<div class="app-block">
+  <h2>General journal</h2>
+</div>
+
+<div class="app-block">
+  <app-transactions-list
+    [transactions]="transactions"
+  />
+</div>
+
+<app-create-fab (fabClicked)="openCreateTransactionView()"/>

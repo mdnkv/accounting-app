@@ -1,0 +1,92 @@
+<div class="app-block">
+  <app-form-page-header (goBack)="goBack()">
+    <h2>Create transaction</h2>
+  </app-form-page-header>
+</div>
+
+<div class="app-block">
+  <form [formGroup]="form" (submit)="onSubmit()">
+
+    <div class="app-transaction-create-view-columns-container app-block">
+      <div class="app-transaction-create-view-columns-item">
+        <!-- Date -->
+        <mat-form-field>
+          <mat-label>Transaction date</mat-label>
+          <input matInput formControlName="date" [matDatepicker]="picker">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          @if (form.get('date')?.touched && form.get('date')?.invalid ){
+            <mat-error>This field cannot be blank</mat-error>
+          }
+        </mat-form-field>
+        <!-- Currency -->
+        <mat-form-field>
+          <mat-label>Currency</mat-label>
+          <mat-select formControlName="currencyId">
+            @for (currency of currencies; track currency.id!){
+              <mat-option [value]="currency.id">{{currency.name}}</mat-option>
+            }
+          </mat-select>
+
+          @if (form.get('currencyId')?.touched && form.get('currencyId')?.invalid ){
+            <mat-error>This field cannot be blank</mat-error>
+          }
+
+        </mat-form-field>
+      </div>
+      <div class="app-transaction-create-view-columns-item">
+        <!-- Description -->
+        <mat-form-field>
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description"></textarea>
+          @if (form.get('description')?.touched && form.get('description')?.invalid ){
+            <mat-error>This field cannot be empty</mat-error>
+          }
+
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="app-block">
+      @for (line of lines; track $index){
+        <app-transaction-line-item
+          [transactionLine]="line"
+          [currency]="primaryCurrency"
+          (deleteTransactionLine)="deleteTransactionLine($index)"
+        />
+      }
+    </div>
+
+    <div class="app-block">
+      <button
+        (click)="openTransactionLineCreateDialog()"
+        type="button"
+        matButton="outlined">Add new line</button>
+    </div>
+
+    <div class="app-block">
+      <div>
+        <div>
+          <p>{{totalDebitAmount|currency:primaryCurrency.code}}</p>
+          <p>Debit</p>
+        </div>
+        <div>
+          <p>{{totalCreditAmount|currency:primaryCurrency.code}}</p>
+          <p>Credit</p>
+        </div>
+        <div>
+          <p>{{balance|currency:primaryCurrency.code}}</p>
+          <p>Balance</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-button-row">
+      <button
+        matButton="filled"
+        type="submit"
+        [disabled]="form.invalid || lines.length == 0">Save</button>
+    </div>
+
+  </form>
+</div>

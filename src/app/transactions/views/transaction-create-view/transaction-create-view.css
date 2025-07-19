@@ -1,0 +1,10 @@
+.app-transaction-create-view-columns-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.app-transaction-create-view-columns-item {
+  width: 100%;
+}

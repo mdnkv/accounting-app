@@ -9,6 +9,8 @@ import {CurrencyCreateView} from './currencies/views/currency-create-view/curren
 import {AccountCreateView} from './accounts/views/account-create-view/account-create-view';
 import {AccountUpdateView} from './accounts/views/account-update-view/account-update-view';
 import {AccountsView} from './accounts/views/accounts-view/accounts-view';
+import {TransactionsView} from './transactions/views/transactions-view/transactions-view';
+import {TransactionCreateView} from './transactions/views/transaction-create-view/transaction-create-view';
 
 export const routes: Routes = [
   {
@@ -46,5 +48,13 @@ export const routes: Routes = [
   {
     path:'accounts',
     component: AccountsView
+  },
+  {
+    path:'transactions/create',
+    component: TransactionCreateView
+  },
+  {
+    path: 'transactions',
+    component: TransactionsView
   }
 ];

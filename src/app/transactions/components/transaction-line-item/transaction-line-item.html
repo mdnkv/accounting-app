@@ -1,0 +1,16 @@
+<div>
+  <div>
+    <span>Account name</span>
+  </div>
+  <div>
+    <span>{{transactionLine().debitAmount|currency:currency().code}}</span>
+  </div>
+  <div>
+    <span>{{transactionLine().creditAmount|currency:currency().code}}</span>
+  </div>
+  <div>
+    <button type="button" matIconButton (click)="onDelete()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>
